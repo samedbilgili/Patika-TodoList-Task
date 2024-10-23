@@ -1,24 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
+import HeaderForm from './components/HeaderForm';
+import List from './components/List';
+import Footer from './components/Footer';
+import { useState, useEffect } from "react";
+
+const initialData = [{ status: 'completed', todoName: "Learn JavaScript" },
+{ status: 'active', todoName: "Learn Data" },
+{ status: 'active', todoName: "Have a life!" }];
 
 function App() {
+
+  const [todoList, setTodoList] = useState(initialData);
+  const [filter, setFilter] = useState("all");
+
+  const filteredTodoList = filter == 'all' ? todoList : todoList.filter(x => x.status == filter);
+
+  useEffect(() => {
+    console.log(todoList);
+  }, [todoList]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section class="todoapp">
+      <HeaderForm todoList={todoList} setTodoList={setTodoList} />
+      <List filteredTodoList={filteredTodoList} todoList={todoList} setTodoList={setTodoList} />
+      <Footer todoList={todoList} filter={filter} setFilter={setFilter} setTodoList={setTodoList} />
+    </section>
   );
 }
 
