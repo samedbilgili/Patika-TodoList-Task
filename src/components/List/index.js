@@ -22,15 +22,14 @@ function TodoNameInput({ todo, todoList, setTodoList, index }) {
         }));
     }
 
-
     function handleDeleteTodo(e, _index) {
         setTodoList(todoList.filter((item, index) => index != _index));
     }
 
     if (isEditing) {
-        return <li className="editing" key={index}>
+        return <li className="editing">
             <div>
-                <input class="toggle" type="checkbox" checked={isCompleted && 'checked'} onChange={() => handleChecbox(index)} />
+                <input className="toggle" type="checkbox" checked={isCompleted && 'checked'} onChange={() => handleChecbox(index)} />
                 <input className="edit"
                     value={todo.todoName}
                     onChange={(e) => handleUpdateTodo(e, index)}
@@ -41,15 +40,15 @@ function TodoNameInput({ todo, todoList, setTodoList, index }) {
                     }}
                     autoFocus
                 />
-                <button class="destroy" onClick={() => setIsEditing(false)}></button>
+                <button className="destroy" onClick={() => setIsEditing(false)}></button>
             </div>
         </li>
     } else {
-        return <li class={isCompleted ? 'completed' : 'active'} key={index}>
-            <div class="view">
-                <input class="toggle" type="checkbox" checked={isCompleted && 'checked'} onChange={() => handleChecbox(index)} />
+        return <li className={isCompleted ? 'completed' : 'active'}>
+            <div className="view">
+                <input className="toggle" type="checkbox" checked={isCompleted && 'checked'} onChange={() => handleChecbox(index)} />
                 <label onClick={() => { setIsEditing(true) }}>{todo.todoName}</label>
-                <button class="destroy" onClick={(e) => handleDeleteTodo(e, index)}></button>
+                <button className="destroy" onClick={(e) => handleDeleteTodo(e, index)}></button>
             </div>
         </li>
     }
@@ -64,15 +63,15 @@ function List({ filteredTodoList, todoList, setTodoList }) {
         }));
     }
 
-    return <section class="main">
-        <input class="toggle-all" type="checkbox" />
-        <label for="toggle-all" onClick={handleAllTodoCompleted}>
+    return <section className="main">
+        <input className="toggle-all" type="checkbox" />
+        <label htmlFor="toggle-all" onClick={handleAllTodoCompleted}>
             Mark all as complete
         </label>
 
-        <ul class="todo-list">
+        <ul className="todo-list">
             {filteredTodoList.map((todo, index) => {
-                return <TodoNameInput todo={todo} todoList={todoList} setTodoList={setTodoList} index={index} />
+                return <TodoNameInput todo={todo} todoList={todoList} setTodoList={setTodoList} index={index} key={index}/>
             })}
         </ul>
     </section>

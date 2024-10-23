@@ -17,11 +17,11 @@ function App() {
   const filteredTodoList = filter == 'all' ? todoList : todoList.filter(x => x.status == filter);
 
   useEffect(() => {
-    console.log(todoList);
+    console.log('TodoList', todoList);
   }, [todoList]);
 
   return (
-    <section class="todoapp">
+    <section className="todoapp">
       <HeaderForm todoList={todoList} setTodoList={setTodoList} />
       <List filteredTodoList={filteredTodoList} todoList={todoList} setTodoList={setTodoList} />
       <Footer todoList={todoList} filter={filter} setFilter={setFilter} setTodoList={setTodoList} />

@@ -13,7 +13,7 @@ function HeaderForm({ todoList, setTodoList }) {
     }
   };
 
-  return <header class="header">
+  return <header className="header">
     <h1>todos</h1>
     <form>
       <input
